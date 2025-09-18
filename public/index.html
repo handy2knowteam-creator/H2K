@@ -30,13 +30,13 @@
     .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .row-1{display:grid;grid-template-columns:1fr;gap:12px}
     .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .btn{padding:12px 14px;border-radius:12px;border:1px solid #2a2a2f;background:#141418;color:var(--text);font-weight:700;cursor:pointer;min-width:120px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+    .btn{padding:12px 14px;border-radius:12px;border:1px solid #2a2a2f;background:#141418;color:var(--text);font-weight:700;cursor:pointer;min-width:120px;display:inline-flex;align-items:center;ju[...]
     .btn.primary{border-color:var(--gold);color:#111;background:linear-gradient(180deg,#ffd66e,#d4af37)}
     .btn:disabled{opacity:.6;cursor:not-allowed}
     .progress{display:flex;justify-content:center;gap:6px;margin:12px 0}
     .dot{width:8px;height:8px;border-radius:50%;background:#3a3a42}
     .dot.active{background:var(--gold)}
-    .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#101012;border:1px solid #2a2a2f;color:var(--text);padding:12px 14px;border-radius:12px;box-shadow:0 10px 30px #000a;z-index:1000;min-width:240px;text-align:center}
+    .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#101012;border:1px solid #2a2a2f;color:var(--text);padding:12px 14px;border-radius:12px;box-shadow:0 10px 30px [...]
     .hidden{display:none!important}
     .fine{font-size:.85rem;color:#8b8b91;margin-top:10px}
     .hp{position:absolute!important;left:-9999px!important;opacity:0!important;height:0!important;width:0!important;pointer-events:none!important}
@@ -81,3 +81,35 @@
           <input id="cust_phone" name="phone" placeholder="07xxx xxxxxx" inputmode="tel" required/>
           <div class="actions">
             <button class="btn" type="button" data-prev>
+<!-- ...rest of file remains unchanged... -->
+
+  <script>
+    // Tab switching logic for menu bar
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const customerSection = document.getElementById('customer');
+      const tradeSection = document.getElementById('trade');
+      // If trade section doesn't exist (just in case), skip
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Remove active from all
+          tabButtons.forEach(b => b.classList.remove('active'));
+          // Add active to clicked
+          btn.classList.add('active');
+          // Show/hide sections
+          if(btn.dataset.tab === 'customer') {
+            customerSection.style.display = '';
+            if(tradeSection) tradeSection.style.display = 'none';
+          } else {
+            customerSection.style.display = 'none';
+            if(tradeSection) tradeSection.style.display = '';
+          }
+        });
+      });
+      // By default, show the customer tab, hide trade
+      customerSection.style.display = '';
+      if(tradeSection) tradeSection.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
